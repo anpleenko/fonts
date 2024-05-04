@@ -45,6 +45,8 @@ jobs:
           mv FiraCode/*.ttf dist
           mv FiraMono/*.ttf dist
           mv FiraSans/*.ttf dist
+          mv GitLabMono/*.ttf dist
+          mv GitLabSans/*.ttf dist
           mv Hack/*.ttf dist
           mv Inter/*.ttf dist
           mv JetBrainsMono/*.ttf dist
