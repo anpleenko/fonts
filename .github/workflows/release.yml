@@ -47,6 +47,7 @@ jobs:
           mv RobotoMono/*.ttf dist
           mv FiraSans/*.ttf dist
           mv FiraCode/*.ttf dist
+          mv CascadiaCode/*.ttf dist
 
       - name: Create tar file
         run: cd dist && tar -czvf linux-fonts.tar *.*
