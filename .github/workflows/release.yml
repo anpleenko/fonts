@@ -41,14 +41,16 @@ jobs:
       - name: Move font
         run: |
           mv iosevka/dist/iosevka/TTF/*ttf dist
-          mv JetBrainsMono/*.ttf dist
-          mv Inter/*.ttf dist
-          mv Roboto/*.ttf dist
-          mv RobotoMono/*.ttf dist
-          mv FiraSans/*.ttf dist
+          mv CascadiaCode/*.ttf dist
           mv FiraCode/*.ttf dist
           mv FiraMono/*.ttf dist
-          mv CascadiaCode/*.ttf dist
+          mv FiraSans/*.ttf dist
+          mv Hack/*.ttf dist
+          mv Inter/*.ttf dist
+          mv JetBrainsMono/*.ttf dist
+          mv Roboto/*.ttf dist
+          mv RobotoMono/*.ttf dist
+          mv SourceCodePro/*.ttf dist
 
       - name: Create tar file
         run: cd dist && tar -czvf linux-fonts.tar *.*
