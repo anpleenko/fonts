@@ -1,4 +1,4 @@
-Fonts for Linux
+Fonts for Linux, Windows, MacOS
 
 ```
 mkdir -pv ~/.local/share/fonts
