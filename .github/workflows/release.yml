@@ -38,7 +38,7 @@ jobs:
 
       - name: Move font
         run: |
-          mv iosevka/dist/iosevka/TTF/*ttf dist
+          mv Iosevka/dist/iosevka/TTF/*ttf dist
           mv CascadiaCode/*.ttf dist
           mv FiraCode/*.ttf dist
           mv FiraMono/*.ttf dist
