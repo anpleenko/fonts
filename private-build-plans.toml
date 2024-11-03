@@ -1,14 +1,24 @@
-[buildPlans.iosevka]
+[buildPlans.Iosevka]
 family = "Iosevka"
 spacing = "normal"
 serifs = "sans"
 noCvSs = true
 exportGlyphNames = true
 
-  [buildPlans.iosevka.variants]
+  [buildPlans.Iosevka.variants]
   inherits = "ss12"
 
-    [buildPlans.iosevka.variants.design]
+    [buildPlans.Iosevka.variants.design]
+    one = "no-base"
+    two = "straight-neck-serifless"
+    three = "flat-top-serifless"
+    four = "closed-non-crossing-serifless"
+    five = "upright-flat-serifless"
+    six = "straight-bar"
+    seven = "straight-serifless"
+    eight = "two-circles"
+    nine = "straight-bar"
+    zero = "slashed"
     capital-g = "toothless-rounded-serifless-hooked"
     capital-i = "short-serifed"
     capital-j = "serifed"
@@ -18,17 +28,9 @@ exportGlyphNames = true
     i = "tailed-serifed"
     j = "serifed"
     l = "tailed-serifed"
+    r = "compact-serifless"
     cyrl-capital-u = "straight-serifless"
     cyrl-che = "standard"
-    zero = "slashed"
-    one = "no-base"
-    two = "straight-neck-serifless"
-    four = "closed-non-crossing-serifless"
-    five = "upright-flat-serifless"
-    six = "straight-bar"
-    seven = "straight-serifless"
-    eight = "two-circles"
-    nine = "straight-bar"
     punctuation-dot = "round"
     tilde = "low"
     asterisk = "hex-low"
@@ -39,3 +41,6 @@ exportGlyphNames = true
     dollar = "through"
     percent = "rings-continuous-slash"
     bar = "natural-slope"
+
+  [buildPlans.Iosevka.ligations]
+  inherits = "dlig"

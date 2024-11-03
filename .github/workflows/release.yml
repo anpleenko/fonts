@@ -31,7 +31,7 @@ jobs:
         run: cp private-build-plans.toml iosevka
 
       - name: Build font
-        run: cd iosevka && npm run build -- ttf::iosevka
+        run: cd iosevka && npm run build -- ttf::Iosevka
 
       - name: Create dist folder
         run: mkdir dist
