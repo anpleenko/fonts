@@ -10,35 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
       - name: Update dependencies
         run: sudo apt update
-
-      - name: Install dependencies
-        run: sudo apt install -y ttfautohint
-
-      - name: Clone Iosevka git repo
-        run: git clone --depth 1 https://github.com/be5invis/Iosevka.git iosevka
-
-      - name: Install npm packages
-        run: cd iosevka && npm install
-
-      - name: Copy config
-        run: cp private-build-plans.toml iosevka
-
-      - name: Build font
-        run: cd iosevka && npm run build -- ttf::Iosevka
 
       - name: Create dist folder
         run: mkdir dist
 
       - name: Move font
         run: |
-          mv Iosevka/dist/iosevka/TTF/*ttf dist
           mv CascadiaCode/*.ttf dist
           mv FiraCode/*.ttf dist
           mv FiraMono/*.ttf dist
