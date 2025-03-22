@@ -31,6 +31,7 @@ jobs:
           mv RobotoMono/*.ttf dist
           mv SourceCodePro/*.ttf dist
           mv UbuntuSans/*.ttf dist
+          mv Iosevka/*.ttf dist
 
       - name: Create tar file
         run: cd dist && tar -czvf linux-fonts.tar *.*
