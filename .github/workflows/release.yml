@@ -10,34 +10,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Update dependencies
-        run: sudo apt update
-      
-      - name: Install zip
-        run: sudo apt install -y zip
-
-      - name: Create dist folder
-        run: mkdir dist
-
-      - name: Move font
-        run: |
-          mv CascadiaCode/*.ttf dist
-          mv FiraCode/*.ttf dist
-          mv FiraMono/*.ttf dist
-          mv FiraSans/*.ttf dist
-          mv GitLabMono/*.ttf dist
-          mv GitLabSans/*.ttf dist
-          mv Hack/*.ttf dist
-          mv Inter/*.ttf dist
-          mv JetBrainsMono/*.ttf dist
-          mv Roboto/*.ttf dist
-          mv RobotoMono/*.ttf dist
-          mv SourceCodePro/*.ttf dist
-          mv UbuntuSans/*.ttf dist
-          mv Iosevka/*.ttf dist
-
       - name: Create tar file
-        run: zip -r -j linux-fonts.zip dist
+        run: zip -r -j linux-fonts.zip \
+            CascadiaCode \
+            FiraCode \
+            FiraMono \
+            FiraSans \
+            GitLabMono \
+            GitLabSans \
+            Hack \
+            Inter \
+            Iosevka \
+            JetBrainsMono \
+            Roboto \
+            RobotoMono \
+            SourceCodePro \
+            UbuntuSans \
+            UbuntuSansMono
 
       - uses: "marvinpinto/action-automatic-releases@v1.2.1"
         with:
