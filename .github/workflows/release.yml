@@ -10,23 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Create tar file
-        run: zip -r -j linux-fonts.zip \
-            CascadiaCode \
-            FiraCode \
-            FiraMono \
-            FiraSans \
-            GitLabMono \
-            GitLabSans \
-            Hack \
-            Inter \
-            Iosevka \
-            JetBrainsMono \
-            Roboto \
-            RobotoMono \
-            SourceCodePro \
-            UbuntuSans \
-            UbuntuSansMono
+      - name: Create zip file
+        run: zip -r -j linux-fonts.zip source
 
       - uses: "marvinpinto/action-automatic-releases@v1.2.1"
         with:
@@ -34,5 +19,4 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: false
           title: latest
-          files: |
-            linux-fonts.zip
+          files: linux-fonts.zip
