@@ -12,6 +12,9 @@ jobs:
 
       - name: Update dependencies
         run: sudo apt update
+      
+      - name: Install zip
+        run: sudo apt install -y zip
 
       - name: Create dist folder
         run: mkdir dist
@@ -34,7 +37,7 @@ jobs:
           mv Iosevka/*.ttf dist
 
       - name: Create tar file
-        run: cd dist && tar -czvf linux-fonts.tar *.*
+        run: zip -r -j linux-fonts.zip dist
 
       - uses: "marvinpinto/action-automatic-releases@v1.2.1"
         with:
@@ -43,4 +46,4 @@ jobs:
           prerelease: false
           title: latest
           files: |
-            dist/linux-fonts.tar
+            linux-fonts.zip
