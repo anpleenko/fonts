@@ -15,9 +15,7 @@ jobs:
       - run: sudo apt update
       - run: sudo apt install ttfautohint fontforge
       - run: make build  
-
-      - name: Create zip file
-        run: zip -r -j linux-fonts.zip fonts
+      - run: zip -r -j linux-fonts.zip fonts
 
       - uses: "marvinpinto/action-automatic-releases@v1.2.1"
         with:
