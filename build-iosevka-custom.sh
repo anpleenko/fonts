@@ -12,6 +12,11 @@ if ! command -v npm &>/dev/null; then
   exit 1
 fi
 
+if ! command -v ttfautohint &>/dev/null; then
+  echo "ttfautohint не установлен. Установите ttfautohint перед продолжением."
+  exit 1
+fi
+
 # Клонируем репозиторий Iosevka (если ещё не клонирован)
 if [ ! -d "iosevka" ]; then
   echo "Клонирование репозитория Iosevka..."
