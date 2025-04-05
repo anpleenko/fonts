@@ -40,7 +40,7 @@ patch_fonts() {
             echo "Обработка: $font_file -> $output_file"
 
             # Запускаем font-patcher
-            fontforge --script "$FONT_PATCHER" -c --outputdir "$output_dir" "$font_file"
+            fontforge --script "$FONT_PATCHER" -c -q --outputdir "$output_dir" "$font_file"
 
             # Переименовываем выходной файл (font-patcher добавляет " Nerd Font" к имени)
             mv "${output_dir}/$(basename "$font_file" .ttf) Nerd Font.ttf" "$output_file" 2>/dev/null
