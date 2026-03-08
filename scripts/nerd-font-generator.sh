@@ -7,7 +7,7 @@ FONT_PATCHER="./patcher/font-patcher"
 OUTPUT_BASE="fonts"
 
 # Список исключаемых папок (через | для регулярного выражения)
-EXCLUDE_DIRS="Roboto|Inter|FiraSans|UbuntuSans"
+EXCLUDE_DIRS="Roboto|Inter|FiraSans|Ubuntu|UbuntuSans"
 
 echo "Проверка зависимостей..."
 if ! command -v fontforge &>/dev/null; then
