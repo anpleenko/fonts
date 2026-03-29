@@ -1,53 +1,53 @@
 #!/bin/bash
 
-# Убедитесь, что у вас установлены необходимые зависимости
-echo "Проверка зависимостей..."
+# Make sure you have the required dependencies installed
+echo "Checking dependencies..."
 if ! command -v node &>/dev/null; then
-  echo "Node.js не установлен. Установите Node.js перед продолжением."
+  echo "Node.js is not installed. Please install Node.js before continuing."
   exit 1
 fi
 
 if ! command -v npm &>/dev/null; then
-  echo "npm не установлен. Установите npm перед продолжением."
+  echo "npm is not installed. Please install npm before continuing."
   exit 1
 fi
 
 if ! command -v ttfautohint &>/dev/null; then
-  echo "ttfautohint не установлен. Установите ttfautohint перед продолжением."
+  echo "ttfautohint is not installed. Please install ttfautohint before continuing."
   exit 1
 fi
 
-# Клонируем репозиторий Iosevka (если ещё не клонирован)
-if [ ! -d "iosevka" ]; then
-  echo "Клонирование репозитория Iosevka..."
-  git clone --depth=1 https://github.com/be5invis/Iosevka.git iosevka
-  cd iosevka || exit
+# Clone the Iosevka repository (if not already cloned)
+if [ ! -d ".iosevka" ]; then
+  echo "Cloning Iosevka repository..."
+  git clone --depth=1 https://github.com/be5invis/Iosevka.git .iosevka
+  cd .iosevka || exit
 else
-  cd iosevka || exit
+  cd .iosevka || exit
   git pull
 fi
 
-# Устанавливаем зависимости
-echo "Установка зависимостей..."
+# Install dependencies
+echo "Installing dependencies..."
 npm install
 
-# Копируем ваш файл конфигурации
-echo "Копирование private-build-plans.toml..."
+# Copy your configuration file
+echo "Copying private-build-plans.toml..."
 cp ../private-build-plans.toml .
 
-# Собираем шрифт
-echo "Запуск сборки шрифта..."
+# Build the font
+echo "Running font build..."
 npm run build -- ttf::Iosevka
 
-echo "Меняем директорию"
+echo "Changing directory"
 cd ..
 
-echo "Удаляем старую директорию шрифта Iosevka"
-find fonts -type d -name "Iosevka" -exec rm -rf {} +
+echo "Removing old Iosevka font directory"
+rm -rf fonts/Iosevka
 
-echo "Копируем новый фалы шрифта Iosevka"
-cp -r iosevka/dist/Iosevka/TTF fonts/Iosevka
+echo "Copying new Iosevka font files"
+cp -r .iosevka/dist/Iosevka/TTF fonts/Iosevka
 
-# Готово
-echo "Сборка завершена! Шрифты находятся в:"
+# Done
+echo "Build completed! Fonts are located in:"
 echo "$(pwd)/dist/"

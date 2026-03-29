@@ -1,70 +1,70 @@
 #!/bin/bash
 
-# Путь к font-patcher (укажите правильный путь)
+# Path to font-patcher (specify the correct path)
 FONT_PATCHER="./patcher/font-patcher"
 
-# Базовый каталог для выходных файлов
+# Base directory for output files
 OUTPUT_BASE="fonts"
 
-# Список исключаемых папок (через | для регулярного выражения)
+# List of directories to exclude (using | for regex)
 EXCLUDE_DIRS="Roboto|Inter|FiraSans|Ubuntu|UbuntuSans"
 
-echo "Проверка зависимостей..."
+echo "Checking dependencies..."
 if ! command -v fontforge &>/dev/null; then
-    echo "Fontforge не установлен. Установите Fontforge перед продолжением."
+    echo "Fontforge is not installed. Please install Fontforge before continuing."
     exit 1
 fi
 
-# Функция для удаления существующих NerdFont папок
+# Function to remove existing NerdFont directories
 clean_nerdfont_dirs() {
-    echo "Очистка старых NerdFont директорий..."
+    echo "Cleaning old NerdFont directories..."
     find "$OUTPUT_BASE" -type d -name "*NerdFont" -exec rm -rf {} +
-    echo "Очистка завершена."
+    echo "Cleanup completed."
 }
 
-# Функция для создания Nerd Font версий
+# Function to create Nerd Font versions
 patch_fonts() {
     local font_dir="$1"
     local font_family=$(basename "$font_dir")
     local output_dir="${OUTPUT_BASE}/${font_family}NerdFont"
 
-    # Создаем директорию для выходных файлов
+    # Create output directory
     mkdir -p "$output_dir"
 
-    # Обрабатываем каждый файл шрифта в директории
+    # Process each font file in the directory
     for font_file in "$font_dir"/*.ttf; do
         if [ -f "$font_file" ]; then
             local font_name=$(basename "$font_file" .ttf)
             local output_file="${output_dir}/${font_name} Nerd Font.ttf"
 
-            echo "Обработка: $font_file -> $output_file"
+            echo "Processing: $font_file -> $output_file"
 
-            # Запускаем font-patcher
+            # Run font-patcher
             fontforge --script "$FONT_PATCHER" -c -q --outputdir "$output_dir" "$font_file"
 
-            # Переименовываем выходной файл (font-patcher добавляет " Nerd Font" к имени)
+            # Rename output file (font-patcher adds " Nerd Font" to the name)
             mv "${output_dir}/$(basename "$font_file" .ttf) Nerd Font.ttf" "$output_file" 2>/dev/null
         fi
     done
 }
 
-# Основная логика
+# Main logic
 clean_nerdfont_dirs
 
-# Обрабатываем все семейства шрифтов, кроме исключённых и NerdFont
+# Process all font families except excluded and NerdFont ones
 for font_family_dir in "$OUTPUT_BASE"/*/; do
     font_family=$(basename "$font_family_dir")
 
-    # Проверяем, нужно ли пропустить эту папку
+    # Check if this directory should be skipped
     if [[ "$font_family" =~ ^($EXCLUDE_DIRS)$ ]]; then
-        echo "Пропускаем исключённую папку: $font_family"
+        echo "Skipping excluded directory: $font_family"
         continue
     fi
 
     if [[ "$font_family" != *"NerdFont"* ]]; then
-        echo "Обработка семейства шрифтов: $font_family"
+        echo "Processing font family: $font_family"
         patch_fonts "$font_family_dir"
     fi
 done
 
-echo "Готово! Все шрифты были обработаны."
+echo "Done! All fonts have been processed."
