@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Path to font-patcher (specify the correct path)
 FONT_PATCHER="./patcher/font-patcher"
@@ -8,12 +8,6 @@ OUTPUT_BASE="fonts"
 
 # List of directories to exclude (using | for regex)
 EXCLUDE_DIRS="Roboto|Inter|FiraSans|Ubuntu|UbuntuSans"
-
-echo "Checking dependencies..."
-if ! command -v fontforge &>/dev/null; then
-    echo "Fontforge is not installed. Please install Fontforge before continuing."
-    exit 1
-fi
 
 # Function to remove existing NerdFont directories
 clean_nerdfont_dirs() {
